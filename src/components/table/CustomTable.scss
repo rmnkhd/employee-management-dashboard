@@ -1,0 +1,31 @@
+.table-spinner-loading {
+  height: 50px;
+  position: relative;
+  top: 50%;
+
+  > td {
+    border-bottom: none !important;
+    position: absolute;
+    right: 50%;
+  }
+}
+
+.table {
+  background: #fff !important;
+  font-size: 14px;
+
+  tr {
+    vertical-align: middle;
+
+    &:hover {
+      background: #F9F9F9;
+    }
+
+    td {
+      &:first-child,
+      &:last-child {
+        padding: 11px 16px;
+      }
+    }
+  }
+}
