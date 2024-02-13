@@ -3,11 +3,9 @@
 
 import CustomTable from "@/components/table/CustomTable";
 import Column from "@/components/Column";
-import { useState } from "react";
-
+import './employees.scss'
 
 export default function Page() {
-    const [itemsData, setItemsData] = useState({});
 
 
     const items =
@@ -22,15 +20,37 @@ export default function Page() {
         {id:7 , name:"reza" , gender:"male" },
         {id:8 , name:"ahmad" , gender:"male" },
         ]
-    return (
-        <CustomTable  items={items} isLoading={false} itemsPerPage={25} page={1}>
-            <Column width={240} header={"id"} field={"id"} />
-            <Column width={240} header={"name"} field={"name"} />
-            <Column width={240} header={"gender"} field={"gender"} />
-            <Column width={240} header={"test"} field={"gender"} >
-                <div>test</div>
-            </Column>
+    function editEmployees(item) {
 
-        </CustomTable>
+    }
+    function addEmployees(item) {
+
+    }
+    function deleteEmployees(item) {
+
+    }
+    return (
+        <div>
+            <CustomTable  items={items} isLoading={false} itemsPerPage={25} page={1}>
+                <Column width={50} header={"id"} field={"id"} />
+                <Column width={50} header={"name"} field={"name"} />
+                <Column width={50} header={"gender"} field={"gender"} />
+                <Column width={200} header={"operations"} field={""} >
+                    <div className="row align-center pe-1">
+                        <button className="employees-action btn btn-sm fs-6 fw-bold text-primary" onClick={() => editEmployees(item)}>
+                            Edit
+                        </button>
+                        <button className="employees-action btn btn-sm fs-6 fw-bold text-primary" onClick={() => addEmployees(item)}>
+                            Add
+                        </button>
+                        <button className="employees-action btn btn-sm fs-6 fw-bold text-secondary" onClick={() => deleteEmployees(item)}>
+                            Delete
+                        </button>
+                    </div>
+
+                </Column>
+            </CustomTable>
+        </div>
+
     )
 }

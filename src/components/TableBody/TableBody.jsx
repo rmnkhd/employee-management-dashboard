@@ -1,13 +1,10 @@
 "use client"
 import React from 'react';
-import { hasReactChildren } from "@/utils/hasReactChildren";
 import Skeleton from "@/components/Skeleton/Skeleton"; // Update the import path as necessary
 import './TableBody.scss'
 
 function VTableBody({ columns, items, isLoading, itemsPerPage, hasError }) {
     // Function to render columns for a single item
-    console.log("columns", columns)
-
 
     const renderColumns = (column, item, rowIndex) => {
         let content;
@@ -79,7 +76,7 @@ function VTableBody({ columns, items, isLoading, itemsPerPage, hasError }) {
         {items.map((item, rowIndex) => (
             <tr key={rowIndex}>
                 {columns.map((column, index) => (
-                    <td key={index} className="fs-3 bg-transparent" style={getColumnStyle(column)}>
+                    <td key={index} className="fs-5 bg-transparent" style={getColumnStyle(column)}>
                         {renderColumns(column, item, rowIndex)}
                     </td>
                 ))}
