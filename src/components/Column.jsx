@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Column({ header, field, width, show, children }) {
+function Column({ header, field, width, show, children, render }) {
     return (
         <></>
     );

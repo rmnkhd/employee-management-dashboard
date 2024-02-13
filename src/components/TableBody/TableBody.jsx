@@ -6,6 +6,7 @@ import './TableBody.scss'
 function VTableBody({ columns, items, isLoading, itemsPerPage, hasError }) {
     // Function to render columns for a single item
 
+
     const renderColumns = (column, item, rowIndex) => {
         let content;
 
@@ -13,7 +14,7 @@ function VTableBody({ columns, items, isLoading, itemsPerPage, hasError }) {
             content = column.props.children
 
         } else {
-            content = React.createElement('div', { field: column.props.field, item, rowIndex }, item[column.props.field]);
+            content = React.createElement('div', { field: column.props.field, item }, item[column.props.field]);
 
         }
 
@@ -75,13 +76,25 @@ function VTableBody({ columns, items, isLoading, itemsPerPage, hasError }) {
 
         {items.map((item, rowIndex) => (
             <tr key={rowIndex}>
-                {columns.map((column, index) => (
-                    <td key={index} className="fs-5 bg-transparent" style={getColumnStyle(column)}>
-                        {renderColumns(column, item, rowIndex)}
-                    </td>
-                ))}
+                {columns.map((column, colIndex) => {
+                    const renderContent = () => {
+                        if (typeof column.props.render === 'function') {
+                            return column.props.render(item);
+                        } else {
+                            return renderColumns(column, item, rowIndex);
+                        }
+                    };
+
+                    return (
+                        <td key={colIndex} className="fs-5 bg-transparent" style={getColumnStyle(column)}>
+                            {renderContent()}
+                        </td>
+                    );
+                })}
             </tr>
         ))}
+
+
 
         </tbody>
     );

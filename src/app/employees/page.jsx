@@ -21,7 +21,6 @@ export default function Page() {
         {id:8 , name:"ahmad" , gender:"male" },
         ]
     function editEmployees(item) {
-
     }
     function addEmployees(item) {
 
@@ -29,26 +28,30 @@ export default function Page() {
     function deleteEmployees(item) {
 
     }
+
+    function renderOperations(item) {
+        return (
+            <div className="row align-center pe-1">
+                <button className="employees-action btn btn-sm fs-6 fw-bold text-primary" onClick={() => editEmployees(item)}>
+                    Edit
+                </button>
+                <button className="employees-action btn btn-sm fs-6 fw-bold text-primary" onClick={() => addEmployees(item)}>
+                    Add
+                </button>
+                <button className="employees-action btn btn-sm fs-6 fw-bold text-secondary" onClick={() => deleteEmployees(item)}>
+                    Delete
+                </button>
+            </div>
+         );
+    }
+
     return (
         <div>
-            <CustomTable  items={items} isLoading={false} itemsPerPage={25} page={1}>
+            <CustomTable items={items} isLoading={false} itemsPerPage={25} page={1}>
                 <Column width={50} header={"id"} field={"id"} />
                 <Column width={50} header={"name"} field={"name"} />
                 <Column width={50} header={"gender"} field={"gender"} />
-                <Column width={200} header={"operations"} field={""} >
-                    <div className="row align-center pe-1">
-                        <button className="employees-action btn btn-sm fs-6 fw-bold text-primary" onClick={() => editEmployees(item)}>
-                            Edit
-                        </button>
-                        <button className="employees-action btn btn-sm fs-6 fw-bold text-primary" onClick={() => addEmployees(item)}>
-                            Add
-                        </button>
-                        <button className="employees-action btn btn-sm fs-6 fw-bold text-secondary" onClick={() => deleteEmployees(item)}>
-                            Delete
-                        </button>
-                    </div>
-
-                </Column>
+                <Column width={200} header={"operations"} field={""} render={renderOperations}></Column>
             </CustomTable>
         </div>
 
