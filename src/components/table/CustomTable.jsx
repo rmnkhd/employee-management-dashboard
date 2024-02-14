@@ -1,6 +1,6 @@
 import React from 'react';
-import TableHeader from "@/components/TableHeader/TableHeader";
-import TableBody from "@/components/TableBody/TableBody"; // Update the import path as necessary
+import TableHeader from "@/components/tableHeader/TableHeader";
+import TableBody from "@/components/tableBody/TableBody"; // Update the import path as necessary
 import './CustomTable.scss'
 
 function CustomTable({ children , items, page = 1, itemsPerPage = 10, isLoading = false, hasError = false, ...props }) {

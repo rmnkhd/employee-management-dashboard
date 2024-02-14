@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import Skeleton from "@/components/Skeleton/Skeleton"; // Update the import path as necessary
+import Skeleton from "@/components/skeleton/Skeleton"; // Update the import path as necessary
 import './TableBody.scss'
 
 function VTableBody({ columns, items, isLoading, itemsPerPage, hasError }) {
