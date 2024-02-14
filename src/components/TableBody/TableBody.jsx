@@ -6,18 +6,14 @@ import './TableBody.scss'
 function VTableBody({ columns, items, isLoading, itemsPerPage, hasError }) {
     // Function to render columns for a single item
 
-
-    const renderColumns = (column, item, rowIndex) => {
+    const renderColumns = (column, item) => {
         let content;
 
         if (column.props.children) {
             content = column.props.children
-
         } else {
-            content = React.createElement('div', { field: column.props.field, item }, item[column.props.field]);
-
+            content = React.createElement('div', null, item[column.props.field]);
         }
-
 
         return (
             <>

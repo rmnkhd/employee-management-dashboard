@@ -1,0 +1,48 @@
+const employeesData =
+    [
+        {id:0 , name:"Ramin" ,family_name:"Johnson",  gender:"male" , phone:"415-555-0163" , email:"ramin.kheradmand@example.com"  },
+        {id:1 , name:"Michael" ,family_name:"Taylor",  gender:"male" , phone:"318-555-0113" , email:"michael.smith@example.com"  },
+        {id:2 , name:"Emily" ,family_name:"Martinez",  gender:"female" , phone:"682-555-0164" , email:"emily.johnson@example.com"  },
+        {id:3 , name:"Olivia" ,family_name:"Brown",  gender:"female" , phone:"315-555-0187" , email:"olivia.williams@example.com"  },
+        {id:4 , name:"Emma" ,family_name:"Miller",  gender:"female" , phone:"605-555-0195" , email:"emma.brown@example.com"  },
+        {id:5 , name:"Ava" ,family_name:"Davis",  gender:"female" , phone:"516-555-0113" , email:"ava.jones@example.com"  },
+        {id:6 , name:"James" ,family_name:"Wilson",  gender:"male" , phone:"845-555-0155" , email:"james.miller@example.com"  },
+        {id:7 , name:"David" ,family_name:"Moore",  gender:"male" , phone:"205-555-0179" , email:"david.davis@example.com"  },
+        {id:8 , name:"John" ,family_name:"Anderson",  gender:"male" , phone:"818-555-0130" , email:"john.garcia@example.com"  },
+        {id:9 , name:"Robert" ,family_name:"Harris",  gender:"male" , phone:"925-555-0116" , email:"robert.rodriguez@example.com"  },
+        {id:10 , name:"Sophia" ,family_name:"Lopez",  gender:"female" , phone:"818-555-0189" , email:"sophia.martinez@example.com"  },
+        {id:11 , name:"William" ,family_name:"Clark",  gender:"male" , phone:"916-555-0122" , email:"william.hernandez@example.com"  },
+        {id:12 , name:"Isabella" ,family_name:"Lewis",  gender:"female" , phone:"401-555-0164" , email:"isabella.lopez@example.com"  },
+        {id:13 , name:"Joseph" ,family_name:"Walker",  gender:"male" , phone:"415-555-0133" , email:"joseph.gonzalez@example.com"  },
+        {id:14 , name:"Daniel" ,family_name:"Hill",  gender:"male" , phone:"727-555-0193" , email:"daniel.gonzalez@example.com"  },
+        {id:15 , name:"Christopher" ,family_name:"Young",  gender:"male" , phone:"209-555-0181" , email:"christopher.gonzalez@example.com"  },
+        {id:16 , name:"Matthew" ,family_name:"Martin",  gender:"male" , phone:"417-555-0133" , email:"matthew.gonzalez@example.com"  },
+        {id:17 , name:"Andrew" ,family_name:"White",  gender:"male" , phone:"208-555-0173" , email:"andrew.gonzalez@example.com"  },
+        {id:18 , name:"Joshua" ,family_name:"Thompson",  gender:"male" , phone:"414-555-0168" , email:"joshua.gonzalez@example.com"  },
+        {id:19 , name:"Richard" ,family_name:"Garcia",  gender:"male" , phone:"234-555-0121" , email:"richard.gonzalez@example.com"  },
+        {id:20 , name:"Nicholas" ,family_name:"Martinez",  gender:"male" , phone:"806-555-0127" , email:"nicholas.gonzalez@example.com"  },
+        {id:21 , name:"Benjamin" ,family_name:"Robinson",  gender:"male" , phone:"203-555-0124" , email:"benjamin.gonzalez@example.com"  },
+        {id:22 , name:"Alexander" ,family_name:"Clark",  gender:"male" , phone:"631-555-0119" , email:"alexander.gonzalez@example.com"  },
+        {id:23 , name:"Samuel" ,family_name:"Allen",  gender:"male" , phone:"407-555-0190" , email:"samuel.gonzalez@example.com"  },
+        {id:24 , name:"Tyler" ,family_name:"Harris",  gender:"male" , phone:"802-555-0167" , email:"tyler.gonzalez@example.com"  },
+        {id:25 , name:"Brandon" ,family_name:"Nelson",  gender:"male" , phone:"712-555-0191" , email:"brandon.gonzalez@example.com"  },
+        {id:26 , name:"Justin" ,family_name:"Young",  gender:"male" , phone:"301-555-0178" , email:"justin.gonzalez@example.com"  },
+        {id:27 , name:"Matthew" ,family_name:"White",  gender:"male" , phone:"678-555-0154" , email:"matthew.gonzalez@example.com"  },
+        {id:28 , name:"Anthony" ,family_name:"Scott",  gender:"male" , phone:"517-555-0151" , email:"anthony.gonzalez@example.com"  },
+        {id:29 , name:"Donald" ,family_name:"Nelson",  gender:"male" , phone:"216-555-0142" , email:"donald.gonzalez@example.com"  },
+        {id:30 , name:"Paul" ,family_name:"Roberts",  gender:"male" , phone:"832-555-0125" , email:"paul.gonzalez@example.com"  },
+        {id:31 , name:"James" ,family_name:"Green",  gender:"male" , phone:"417-555-0186" , email:"james.gonzalez@example.com"  },
+        {id:32 , name:"John" ,family_name:"Jones",  gender:"male" , phone:"337-555-0171" , email:"john.gonzalez@example.com"  },
+        {id:33 , name:"Robert" ,family_name:"Martinez",  gender:"male" , phone:"715-555-0147" , email:"robert.gonzalez@example.com"  },
+        {id:34 , name:"Michael" ,family_name:"Young",  gender:"male" , phone:"314-555-0131" , email:"michael.gonzalez@example.com"  },
+        {id:35 , name:"William" ,family_name:"Hernandez",  gender:"male" , phone:"713-555-0184" , email:"william.gonzalez@example.com"  },
+        {id:36 , name:"David" ,family_name:"Smith",  gender:"male" , phone:"319-555-0176" , email:"david.gonzalez@example.com"  },
+        {id:37 , name:"Richard" ,family_name:"Thomas",  gender:"male" , phone:"620-555-0188" , email:"richard.gonzalez@example.com"  },
+        {id:38 , name:"Joseph" ,family_name:"Garcia",  gender:"male" , phone:"216-555-0160" , email:"joseph.gonzalez@example.com"  },
+        {id:39 , name:"Charles" ,family_name:"Jackson",  gender:"male" , phone:"316-555-0126" , email:"charles.gonzalez@example.com"  },
+        {id:40 , name:"Thomas" ,family_name:"King",  gender:"male" , phone:"612-555-0198" , email:"thomas.gonzalez@example.com"  }
+    ]
+
+
+export {employeesData}
+
