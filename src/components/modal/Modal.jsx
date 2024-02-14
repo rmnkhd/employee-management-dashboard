@@ -1,8 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { executeAfterTransition, reflow } from "bootstrap/js/src/util";
 
-function Modal({ show , setShow, size, mobileBreakpoint, children }) {
+function Modal({ show, setShow, size, mobileBreakpoint, children }) {
     const modalRef = useRef(null);
 
     const dialogClassName = () => {
@@ -16,31 +15,24 @@ function Modal({ show , setShow, size, mobileBreakpoint, children }) {
         setShow(false);
     };
 
-    const setModalDisplay = (display) => {
-        if (modalRef.current) {
-            modalRef.current.style.display = display;
-        }
-    };
-
     useEffect(() => {
         if (show) {
-            setModalDisplay('block');
-            if (modalRef.current) {
-                reflow(modalRef.current);
-                modalRef.current.classList.add('show');
-            }
+            modalRef.current.classList.add('show');
+            modalRef.current.style.display = 'block';
         } else {
-            if (modalRef.current) {
-                modalRef.current.classList.remove('show');
-                executeAfterTransition(() => setModalDisplay(null), modalRef.current);
-            }
+            modalRef.current.classList.remove('show');
+            modalRef.current.style.display = 'none';
         }
     }, [show]);
+
+    const handleContentClick = (event) => {
+        event.stopPropagation();
+    };
 
     return (
         <div ref={modalRef} className={`modal ${show ? 'backdrop' : ''}`} onClick={hide}>
             <div className={show ? dialogClassName() : 'hidden'}>
-                <div className="modal-content">
+                <div className="modal-content" onClick={handleContentClick}>
                     {children}
                 </div>
             </div>
@@ -50,6 +42,7 @@ function Modal({ show , setShow, size, mobileBreakpoint, children }) {
 
 Modal.propTypes = {
     show: PropTypes.bool.isRequired,
+    setShow: PropTypes.func.isRequired,
     size: PropTypes.oneOf(['sm', 'lg', 'xl']),
     mobileBreakpoint: PropTypes.oneOf(['sm', 'lg', 'md', 'xl']),
     children: PropTypes.node,
