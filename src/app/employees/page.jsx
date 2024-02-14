@@ -11,29 +11,46 @@ import EmployeesDeleteForm from "@/components/employees/EmployeesDeleteForm";
 export default function Page() {
     const [showForm, setShowForm] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [itemData, setItemData] = useState({
+        name: "",
+        family_name: "",
+        gender: "",
+        phone: "",
+        email: ""
+    });
 
-    function editEmployees() {
+    function editEmployees(item) {
+        setItemData(item)
         setShowForm(true)
     }
 
     function addEmployees() {
+        setItemData({
+            name: "",
+            family_name: "",
+            gender: "",
+            phone: "",
+            email: ""
+        })
         setShowForm(true)
     }
 
     function deleteEmployees(item) {
+        setItemData(item)
         setShowDeleteModal(true)
     }
 
 
-    function renderOperations() {
+    function renderOperations(item) {
         return (
+
             <div className="row align-center pe-1">
                 <button className="employees-action btn btn-sm fs-6 fw-bold text-primary"
-                        onClick={() => editEmployees()}>
+                        onClick={() => editEmployees(item)}>
                     Edit
                 </button>
                 <button className="employees-action btn btn-sm fs-6 fw-bold text-secondary"
-                        onClick={() => deleteEmployees()}>
+                        onClick={() => deleteEmployees(item)}>
                     Delete
                 </button>
             </div>
@@ -60,8 +77,8 @@ export default function Page() {
                 <Column header={"Email"} field={"email"}/>
                 <Column header={"Operations"} field={""} render={renderOperations}></Column>
             </CustomTable>
-            <EmployeesForm show={showForm} setShow={setShowForm}/>
-            <EmployeesDeleteForm show={showDeleteModal} setShow={setShowDeleteModal}/>
+            <EmployeesForm show={showForm} setShow={setShowForm} item={itemData}/>
+            <EmployeesDeleteForm show={showDeleteModal} setShow={setShowDeleteModal} item={itemData} />
         </div>
 
     )

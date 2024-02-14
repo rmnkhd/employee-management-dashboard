@@ -10,6 +10,7 @@ function removeEmployeeById(id) {
         console.log(`Employee with ID ${id} not found.`);
     }
 }
+
 // Example usage:
 // removeEmployeeById(3); // Remove employee with ID 3
 
@@ -32,6 +33,7 @@ function updateEmployee(id, newData) {
     Object.assign(employeeToUpdate, newData);
     console.log("Employee updated successfully.");
 }
+
 // // Example usage:
 // updateEmployee(1, {
 //     name: "John",
@@ -74,14 +76,26 @@ function isValidGender(gender) {
 }
 
 function isValidPhone(phone) {
-    const phoneRegex = /^\d{3}-\d{3}-\d{4}$/;
-    return phoneRegex.test(phone);
+    const cleanedPhone = phone.replace(/\D/g, '');
+
+    const phoneRegexes = [
+        /^\d{10}$/,                  // 10 digits without any separators
+        /^\d{3}-\d{3}-\d{4}$/,       // XXX-XXX-XXXX
+        /^\(\d{3}\)\s?\d{3}-\d{4}$/, // (XXX) XXX-XXXX or (XXX)XXX-XXXX
+        /^\d{3}\.\d{3}\.\d{4}$/,     // XXX.XXX.XXXX
+        /^\d{3}\s\d{3}\s\d{4}$/,     // XXX XXX XXXX
+        /^\+\d{1,3}\s?\(\d{3}\)\s?\d{3}-\d{4}$/ // +XX (XXX) XXX-XXXX or +XXX(XXX) XXX-XXXX
+    ];
+
+    // Check if the cleaned phone number matches any of the regex patterns
+    return phoneRegexes.some(regex => regex.test(cleanedPhone));
 }
 
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
+
 function isValidEmployeeData(employee) {
     return (
         isValidName(employee.name) &&
@@ -93,8 +107,9 @@ function isValidEmployeeData(employee) {
 }
 
 
-
 // helper functions
 function generateRandomId() {
     return Math.floor(Math.random() * 10000);
 }
+
+export { removeEmployeeById, addEmployee , updateEmployee}
