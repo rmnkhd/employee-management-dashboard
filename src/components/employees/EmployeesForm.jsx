@@ -3,26 +3,52 @@
 
 import Modal from "@/components/modal/Modal";
 
-export default function EmployeesForm({show , setShow , id}) {
+export default function EmployeesForm({ show, setShow, id }) {
     function hideModal() {
         setShow(false)
     }
+
     return (
         <Modal show={show} setShow={setShow} size='lg'>
             <div className='modal-header'>
                 <span className="fs-5 fw-medium modal-title">{id ? 'update' : 'Create a new Employee'}</span>
 
                 <button onClick={hideModal} className="btn btn-close me-2 fs-6">
+
                 </button>
             </div>
 
             <div className='modal-body'>
                 <div className="row">
                     <div className="col-6">
-                        sasasa
+                    <span className="fs-6 fw-normal form-label">
+                        name
+                    </span>
+                        <input className='form-control mt-1'/>
                     </div>
                     <div className="col-6">
-                        sasasa
+                    <span className="fs-6 fw-normal form-label mb-1">
+                        Family Name
+                    </span>
+                        <input className='form-control mt-1'/>
+                    </div>
+                    <div className="col-6 mt-2">
+                    <span className="fs-6 fw-normal form-label mb-1">
+                        Gender
+                    </span>
+                        <input className='form-control mt-1'/>
+                    </div>
+                    <div className="col-6 mt-2">
+                    <span className="fs-6 fw-normal form-label mb-1">
+                        Phone
+                    </span>
+                        <input className='form-control mt-1'/>
+                    </div>
+                    <div className="col-6 mt-2">
+                    <span className="fs-6 fw-normal form-label mb-1">
+                        Email
+                    </span>
+                        <input className='form-control mt-1'/>
                     </div>
                 </div>
 

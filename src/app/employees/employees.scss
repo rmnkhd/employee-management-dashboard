@@ -1,4 +1,8 @@
-
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 98;
+}
 .employees-action {
   width: fit-content;
   cursor: pointer;
