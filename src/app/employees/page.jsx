@@ -4,9 +4,10 @@ import CustomTable from "@/components/table/CustomTable";
 import Column from "@/components/Column";
 import './employees.scss'
 import { employeesData } from "@/mockData/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EmployeesForm from "@/components/employees/EmployeesForm";
 import EmployeesDeleteForm from "@/components/employees/EmployeesDeleteForm";
+import UsersService from "@/services/UsersService";
 
 export default function Page() {
     const [showForm, setShowForm] = useState(false);
@@ -19,6 +20,10 @@ export default function Page() {
         email: ""
     });
 
+    useEffect(() => {
+        const test = UsersService.fetch();
+        console.log("tttt" , test)
+    }, []);
     function editEmployees(item) {
         setItemData(item)
         setShowForm(true)
