@@ -2,10 +2,14 @@
 
 
 import Modal from "@/components/modal/Modal";
-import { addEmployee, updateEmployee } from "@/utils/employeesOperations";
-import { useEffect, useState } from "react";
+// import { addEmployee, updateEmployee } from "@/utils/employeesOperations";
+import {useEffect, useState} from "react";
+import {updateEmployee, addEmployee, setEmployeesData} from "@/actions/UserAction";
 
-export default function EmployeesForm({ show, setShow, item }) {
+import {useDispatch} from "react-redux";
+import UsersService from "@/services/UsersService";
+
+export default function EmployeesForm({show, setShow, item}) {
 
     const [itemData, setItemData] = useState(item);
 
@@ -19,25 +23,33 @@ export default function EmployeesForm({ show, setShow, item }) {
 
     function handleAction() {
         if (item.id !== undefined) {
-            //edit
-            updateEmployee(item.id, {
+            UsersService.update({
                 name: itemData.name,
-                family_name: itemData.family_name,
-                gender: itemData.gender,
+                email: itemData.email,
                 phone: itemData.phone,
-                email: itemData.email
-            });
-            setShow(false);
+                website: itemData.website,
+            } , item.id)
+                .then((response) => {
+                    setShow(false);
+                    alert(`user successfully updated with ID:${response.data.id} :)`)
+                })
+                .catch(() => {
+                    alert('there is error with json placeholder api');
+                });
         } else {
-            //add
-            addEmployee({
+            UsersService.create({
                 name: itemData.name,
-                family_name: itemData.family_name,
-                gender: itemData.gender,
+                email: itemData.email,
                 phone: itemData.phone,
-                email: itemData.email
-            });
-            setShow(false);
+                website: itemData.website,
+            })
+                .then((response) => {
+                    setShow(false);
+                    alert(`user created successfully with ID: ${response.data.id} :)`)
+                })
+                .catch(() => {
+                    alert('there is error with json placeholder api');
+                });
         }
     }
 
@@ -48,19 +60,13 @@ export default function EmployeesForm({ show, setShow, item }) {
         })
     }
 
-    function onChangeFamilyName(event) {
+    function onChangeWebsite(event) {
         setItemData({
             ...itemData,
-            family_name: event.target.value
+            website: event.target.value
         })
     }
 
-    function onChangeGender(event) {
-        setItemData({
-            ...itemData,
-            gender: event.target.value
-        })
-    }
 
     function onChangePhone(event) {
         setItemData({
@@ -97,18 +103,12 @@ export default function EmployeesForm({ show, setShow, item }) {
                     </div>
                     <div className="col-6">
                     <span className="fs-6 fw-normal form-label mb-1">
-                        Family Name
+                        email
                     </span>
-                        <input className='form-control mt-1' value={itemData.family_name}
-                               onChange={(event) => onChangeFamilyName(event)}/>
+                        <input className='form-control mt-1' value={itemData.email}
+                               onChange={(event) => onChangeEmail(event)}/>
                     </div>
-                    <div className="col-6 mt-2">
-                    <span className="fs-6 fw-normal form-label mb-1">
-                        Gender
-                    </span>
-                        <input value={itemData.gender} onChange={(event) => onChangeGender(event)}
-                               className='form-control mt-1'/>
-                    </div>
+
                     <div className="col-6 mt-2">
                     <span className="fs-6 fw-normal form-label mb-1">
                         Phone
@@ -118,9 +118,9 @@ export default function EmployeesForm({ show, setShow, item }) {
                     </div>
                     <div className="col-6 mt-2">
                     <span className="fs-6 fw-normal form-label mb-1">
-                        Email
+                        website
                     </span>
-                        <input value={itemData.email} onChange={(event) => onChangeEmail(event)}
+                        <input value={itemData.website} onChange={(event) => onChangeWebsite(event)}
                                className='form-control mt-1'/>
                     </div>
                 </div>

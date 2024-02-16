@@ -3,11 +3,12 @@
 import CustomTable from "@/components/table/CustomTable";
 import Column from "@/components/Column";
 import './employees.scss'
-import { employeesData } from "@/mockData/data";
 import { useEffect, useState } from "react";
 import EmployeesForm from "@/components/employees/EmployeesForm";
 import EmployeesDeleteForm from "@/components/employees/EmployeesDeleteForm";
 import UsersService from "@/services/UsersService";
+import { useDispatch, useSelector } from 'react-redux';
+import {setEmployeesData} from "@/actions/UserAction";
 
 export default function Page() {
     const [showForm, setShowForm] = useState(false);
@@ -19,11 +20,22 @@ export default function Page() {
         phone: "",
         email: ""
     });
+    const dispatch = useDispatch();
+    const employeesData = useSelector((state) => state.employees.employeesData);
 
     useEffect(() => {
-        const test = UsersService.fetch();
-        console.log("tttt" , test)
-    }, []);
+        const fetchData = () => {
+            UsersService.fetch()
+                .then(data => {
+                    dispatch(setEmployeesData(data.data));
+                })
+                .catch(error => {
+                    console.error('Error fetching employees data:', error);
+                });
+        };
+        fetchData();
+    }, [dispatch]);
+
     function editEmployees(item) {
         setItemData(item)
         setShowForm(true)
@@ -48,7 +60,6 @@ export default function Page() {
 
     function renderOperations(item) {
         return (
-
             <div className="row align-center pe-1">
                 <button className="employees-action btn btn-sm fs-6 fw-bold text-primary"
                         onClick={() => editEmployees(item)}>
@@ -61,6 +72,7 @@ export default function Page() {
             </div>
         );
     }
+
 
     return (
         <div className="border rounded-2">
@@ -76,10 +88,10 @@ export default function Page() {
             <CustomTable items={employeesData} isLoading={false} itemsPerPage={25} page={1}>
                 <Column header={"Id"} field={"id"}/>
                 <Column header={"Name"} field={"name"}/>
-                <Column header={"Family Name"} field={"family_name"}/>
-                <Column header={"Gender"} field={"gender"}/>
-                <Column header={"Phone"} field={"phone"}/>
                 <Column header={"Email"} field={"email"}/>
+                <Column header={"Phone"} field={"phone"}/>
+                <Column header={"Website"} field={"website"}/>
+
                 <Column header={"Operations"} field={""} render={renderOperations}></Column>
             </CustomTable>
             <EmployeesForm show={showForm} setShow={setShowForm} item={itemData}/>

@@ -33,7 +33,7 @@ class UsersService {
      * @returns {Promise<AxiosResponse<any>>}
      */
     static create(user) {
-        return ApiService.post(`/${ this.URL }/create`, { ...user })
+        return ApiService.post(`/${ this.URL }`, { ...user })
     }
 
     /**
@@ -41,8 +41,8 @@ class UsersService {
      * @param user
      * @returns {Promise<AxiosResponse<any>>}
      */
-    static update(user) {
-        return ApiService.put(`/${ this.URL }/update/${user.id}`, { ...user })
+    static update(user , id) {
+        return ApiService.put(`/${ this.URL }/${id}`, { ...user })
     }
 }
 
