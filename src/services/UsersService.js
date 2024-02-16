@@ -24,7 +24,7 @@ class UsersService {
      * @returns {Promise<axios.AxiosResponse>}
      */
     static delete(id) {
-        return ApiService.post(`/${this.URL}/${id}`);
+        return ApiService.delete(`/${this.URL}/${id}`);
     }
 
     /**

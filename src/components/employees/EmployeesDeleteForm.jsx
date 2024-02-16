@@ -2,7 +2,7 @@
 
 
 import Modal from "@/components/modal/Modal";
-import { removeEmployeeById } from "@/utils/employeesOperations";
+import UsersService from "@/services/UsersService";
 
 export default function EmployeesDeleteForm({ show, setShow, item }) {
     function hideDeleteModal() {
@@ -10,8 +10,14 @@ export default function EmployeesDeleteForm({ show, setShow, item }) {
     }
 
     function deleteEmployee() {
-        removeEmployeeById(item.id)
-        setShow(false);
+        UsersService.delete(item.id)
+            .then(() => {
+                alert(`user successfully deleted)`)
+                setShow(false);
+            })
+            .catch(() => {
+                alert('there is error with json placeholder api');
+            });
     }
     return (
         <Modal show={show} setShow={setShow} size='lg'>

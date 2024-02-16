@@ -3,15 +3,16 @@
 import CustomTable from "@/components/table/CustomTable";
 import Column from "@/components/Column";
 import './employees.scss'
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import EmployeesForm from "@/components/employees/EmployeesForm";
 import EmployeesDeleteForm from "@/components/employees/EmployeesDeleteForm";
 import UsersService from "@/services/UsersService";
-import { useDispatch, useSelector } from 'react-redux';
-import {setEmployeesData} from "@/actions/UserAction";
+import {useDispatch, useSelector} from 'react-redux';
+import {setEmployeesData} from "@/actions/EmployeeAction";
 
 export default function Page() {
     const [showForm, setShowForm] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [itemData, setItemData] = useState({
         name: "",
@@ -24,16 +25,13 @@ export default function Page() {
     const employeesData = useSelector((state) => state.employees.employeesData);
 
     useEffect(() => {
-        const fetchData = () => {
-            UsersService.fetch()
-                .then(data => {
-                    dispatch(setEmployeesData(data.data));
-                })
-                .catch(error => {
-                    console.error('Error fetching employees data:', error);
-                });
-        };
-        fetchData();
+        UsersService.fetch()
+            .then(data => {
+                dispatch(setEmployeesData(data.data));
+            })
+            .catch(error => {
+                console.error('Error fetching employees data:', error);
+            })
     }, [dispatch]);
 
     function editEmployees(item) {
@@ -83,19 +81,18 @@ export default function Page() {
                     onClick={() => addEmployees()}
                 >
                     Create a New employee
-            </button>
+                </button>
             </div>
-            <CustomTable items={employeesData} isLoading={false} itemsPerPage={25} page={1}>
+            <CustomTable items={employeesData} isLoading={isLoading} itemsPerPage={25} page={1}>
                 <Column header={"Id"} field={"id"}/>
                 <Column header={"Name"} field={"name"}/>
                 <Column header={"Email"} field={"email"}/>
                 <Column header={"Phone"} field={"phone"}/>
                 <Column header={"Website"} field={"website"}/>
-
-                <Column header={"Operations"} field={""} render={renderOperations}></Column>
+                <Column header={"Operations"} field={""} render={renderOperations}/>
             </CustomTable>
             <EmployeesForm show={showForm} setShow={setShowForm} item={itemData}/>
-            <EmployeesDeleteForm show={showDeleteModal} setShow={setShowDeleteModal} item={itemData} />
+            <EmployeesDeleteForm show={showDeleteModal} setShow={setShowDeleteModal} item={itemData}/>
         </div>
 
     )
