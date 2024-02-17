@@ -5,9 +5,6 @@ import { Provider } from 'react-redux';
 import { Store } from '@/store/Store';
 const inter = Inter({ subsets: ["latin"] });
 
-// export const metadata = {
-//   title: "Employee Management Dashboard",
-// };
 
 export default function RootLayout({ children }) {
   return (

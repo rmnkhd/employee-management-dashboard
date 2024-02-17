@@ -8,7 +8,6 @@ function Skeleton({ width = null, height = null, animation = true, rounded = 1 }
 
     const classNames = `v-skeleton rounded-${rounded} ${animation ? '' : 'v-skeleton__disable-animation'}`;
 
-    // JSX for rendering the component
     return <div style={styles} className={classNames}></div>;
 }
 

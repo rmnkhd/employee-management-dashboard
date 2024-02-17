@@ -1,7 +1,6 @@
 import React from 'react';
 import './TableHeader.scss'
 function VTableHeader({ columns }) {
-    // Define the functions used in the setup
     function shouldShowColumn(column) {
        // return column.props.show ?? column.type.props.show;
         return true

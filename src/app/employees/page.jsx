@@ -1,29 +1,35 @@
 "use client"
-
 import CustomTable from "@/components/table/CustomTable";
 import Column from "@/components/Column";
 import './employees.scss'
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import EmployeesForm from "@/components/employees/EmployeesForm";
 import EmployeesDeleteForm from "@/components/employees/EmployeesDeleteForm";
 import UsersService from "@/services/UsersService";
-import {useDispatch, useSelector} from 'react-redux';
-import {setEmployeesData} from "@/actions/EmployeeAction";
+import { useDispatch, useSelector } from 'react-redux';
+import { setEmployeesData } from "@/actions/EmployeeAction";
 
+/**
+ * Page component for managing employees.
+ *
+ * @returns {JSX.Element} - The Employees Management Page component.
+ */
 export default function Page() {
     const [showForm, setShowForm] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [itemData, setItemData] = useState({
         name: "",
-        family_name: "",
-        gender: "",
+        email: "",
         phone: "",
-        email: ""
+        website: "",
     });
     const dispatch = useDispatch();
     const employeesData = useSelector((state) => state.employees.employeesData);
 
+    /**
+     * Fetch employees data when component mounts.
+     */
     useEffect(() => {
         UsersService.fetch()
             .then(data => {
@@ -34,28 +40,45 @@ export default function Page() {
             })
     }, [dispatch]);
 
+    /**
+     * Open form to edit employee data.
+     *
+     * @param {Object} item - The employee data to edit.
+     */
     function editEmployees(item) {
         setItemData(item)
         setShowForm(true)
     }
 
+    /**
+     * Open form to add new employee.
+     */
     function addEmployees() {
         setItemData({
             name: "",
-            family_name: "",
-            gender: "",
+            email: "",
             phone: "",
-            email: ""
+            website: "",
         })
         setShowForm(true)
     }
 
+    /**
+     * Open delete modal for employee.
+     *
+     * @param {Object} item - The employee data to delete.
+     */
     function deleteEmployees(item) {
         setItemData(item)
         setShowDeleteModal(true)
     }
 
-
+    /**
+     * Render operation buttons for each employee.
+     *
+     * @param {Object} item - The employee data.
+     * @returns {JSX.Element} - Operation buttons.
+     */
     function renderOperations(item) {
         return (
             <div className="row align-center pe-1">
@@ -70,7 +93,6 @@ export default function Page() {
             </div>
         );
     }
-
 
     return (
         <div className="border rounded-2">
@@ -94,6 +116,5 @@ export default function Page() {
             <EmployeesForm show={showForm} setShow={setShowForm} item={itemData}/>
             <EmployeesDeleteForm show={showDeleteModal} setShow={setShowDeleteModal} item={itemData}/>
         </div>
-
-    )
+    );
 }

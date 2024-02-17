@@ -4,7 +4,6 @@ import TableBody from "@/components/tableBody/TableBody"; // Update the import p
 import './CustomTable.scss'
 
 function CustomTable({ children , items, page = 1, itemsPerPage = 10, isLoading = false, hasError = false, ...props }) {
-    // JSX for rendering the component
     return (
         <div>
             <table className="table" {...props}>

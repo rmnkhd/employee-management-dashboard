@@ -5,7 +5,6 @@ import './TableBody.scss'
 
 function VTableBody({ columns, items, isLoading, itemsPerPage, hasError }) {
     // Function to render columns for a single item
-
     const renderColumns = (column, item) => {
         let content;
 
