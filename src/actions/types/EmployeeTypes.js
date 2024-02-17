@@ -1,0 +1,1 @@
+export const SET_EMPLOYEES_DATA = 'SET_EMPLOYEES_DATA';

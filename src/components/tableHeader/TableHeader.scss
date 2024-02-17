@@ -1,0 +1,14 @@
+.table-tr {
+  border-bottom: 1px solid #CBD7DD;
+  background: #FAFAFA;
+
+}
+.table-th {
+  background: #FAFAFA !important;
+  font-size: 14px;
+
+  &:first-child,
+  &:last-child {
+    padding: 8px 16px;
+  }
+}
